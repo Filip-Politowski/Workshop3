@@ -97,9 +97,10 @@
                                 <label for="name">User name</label>
                                 <input type="text" class="form-control" name="name" placeholder="User name.." id="name">
                                 <label for="email">User email</label>
-                                <input type="text" class="form-control" name="name" placeholder="User name.." id="email">
+                                <input type="text" class="form-control" name="email" placeholder="User name.." id="email">
                                 <label for="password">User password</label>
-                                <input type="password" class="form-control" name="name" placeholder="User name.." id="password">
+                                <input type="password" class="form-control" name="password" placeholder="User name.." id="password"></br>
+                                <button type="submit" class="btn btn-primary"> Add </button>
                             </form>
                         </div>
                     </div>
