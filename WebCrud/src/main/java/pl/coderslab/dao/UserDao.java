@@ -34,25 +34,6 @@ public class UserDao  {
         }
         return user;
     }
-    /*public User create(User user) {
-    try (Connection conn = DbUtil.getConnection()) {
-        PreparedStatement statement =
-                conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS);
-        statement.setString(1, user.getUserName());
-        statement.setString(2, user.getEmail());
-        statement.setString(3, hashPassword(user.getPassword()));
-        statement.executeUpdate();
-        ResultSet resultSet = statement.getGeneratedKeys();
-        if (resultSet.next()) {
-            user.setId(resultSet.getInt(1));
-        }
-        return user;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return null;
-    }
-}*/
-
 
     public User read(int id) {
         try (Connection connection = DbUtil.getConnection()) {
