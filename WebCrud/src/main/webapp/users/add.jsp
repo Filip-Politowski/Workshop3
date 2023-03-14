@@ -75,7 +75,7 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Users CRUD</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    <a href="/user/list" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> List User</a>
                 </div>
 
@@ -93,13 +93,20 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <form method="post">
+                            <form method="post" action="/user/add">
+
                                 <label for="name">User name</label>
+
                                 <input type="text" class="form-control" name="name" placeholder="User name.." id="name">
+
                                 <label for="email">User email</label>
-                                <input type="text" class="form-control" name="email" placeholder="User name.." id="email">
+
+                                <input type="text" class="form-control" name="email" placeholder="User email.." id="email">
+
                                 <label for="password">User password</label>
-                                <input type="password" class="form-control" name="password" placeholder="User name.." id="password"></br>
+
+                                <input type="password" class="form-control" name="password" placeholder="User password.." id="password"></br>
+
                                 <button type="submit" class="btn btn-primary"> Add </button>
                             </form>
                         </div>
