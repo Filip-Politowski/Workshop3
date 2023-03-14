@@ -4,10 +4,7 @@ package pl.coderslab.dao;
 import pl.coderslab.entity.User;
 import pl.coderslab.utils.DbUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,16 +13,20 @@ public class UserDao  {
 
     public User create(User user) {
         try (Connection connection = DbUtil.getConnection();) {
-            String sqlQuery = "INSERT INTO user (id, name, email, password) VALUES(?,?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            String sqlQuery = "INSERT INTO user(name, email, password) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement =   connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1, user.getId());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getPassword());
 
+
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
 
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                user.setId(resultSet.getInt(1));
+            }
             preparedStatement.close();
 
         } catch (SQLException e) {
@@ -33,6 +34,24 @@ public class UserDao  {
         }
         return user;
     }
+    /*public User create(User user) {
+    try (Connection conn = DbUtil.getConnection()) {
+        PreparedStatement statement =
+                conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, user.getUserName());
+        statement.setString(2, user.getEmail());
+        statement.setString(3, hashPassword(user.getPassword()));
+        statement.executeUpdate();
+        ResultSet resultSet = statement.getGeneratedKeys();
+        if (resultSet.next()) {
+            user.setId(resultSet.getInt(1));
+        }
+        return user;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+    }
+}*/
 
 
     public User read(int id) {
