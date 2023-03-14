@@ -93,7 +93,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <form method="post" action="/user/add">
+                            <form method="post">
 
                                 <label for="name">User name</label>
 
